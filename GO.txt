@@ -1,0 +1,351 @@
+API CREATION:
+fmt - i/o operation
+net/http - create or interact with http server and clients
+	builtin method and function to customize the request and response
+	allow for creating http server using handlerfunction to server web content or data
+strconv - convert string to or from numberic types
+	atoi - string to int
+	itoa - int to string
+http.Handlefunc() - to register the incoming requests
+addHnadler() -  incoming request functioning
+The http.ListenAndServe function in Go is a part of Go’s standard library in the net/http package. It provides an easy way to create an HTTP server that listens for incoming connections and serves HTTP responses. This function starts an HTTP server on a specified address and port, and routes incoming requests to the appropriate handlers.
+
+-----------------------------------------------------------------------------------------------------------------
+GO
+	cross platform, open source programming language.
+	used to create high performance application.
+	fast, statically types, complied language.
+	developed at Google by Robert Griesemer, Rob Pike, and Ken Thompson in 2007
+	syntax is similar to c++.
+	
+	Statically typed - the data types of variables are determined at compile-time rather than at runtime.and also detect error during compiled time.
+----------------------------------------------------------------------------------------------------------------
+
+Used for
+	Web development (server-side)
+	Developing network-based programs
+	Developing cross-platform enterprise applications
+	Cloud-native development
+-------------------------------------------------------------------------------------------------------
+why go use
+
+	Go is fun and easy to learn
+	Go has fast run time and compilation time
+	Go supports concurrency
+	Go has memory management
+	Go works on different platforms (Windows, Mac, Linux, Raspberry Pi, etc.)
+------------------------------------------------------------------------------------------------------------
+
+Syntax:
+
+	A Go file consists of the following parts:
+		Package declaration
+		Import packages
+		Functions
+		Statements and expressions
+
+	run cmd - go run .\simple.go
+
+
+package main
+
+import (
+	"fmt"
+)
+
+func main() {
+	fmt.Println("Hello World!")
+}
+
+
+	any executable code belongs to the main package.
+	statements are separated by ending a line (hitting the Enter key) or by a semicolon ";".
+
+----------------------------------------------------------------------------------------------------------------
+comments
+	//  or  /*-------------*/
+------------------------------------------------------------------------------------------------------------------
+Variables
+	containers for storing data values
+
+	var keyword:
+		var variablename type=value
+
+		 	var student1 string = "John" //type is string
+  			var student2 = "Jane" //type is inferred
+	
+	:= sign:
+		the type of the variable is inferred from the value (means that the compiler decides the type of the variable, based on the value)
+
+			x := 2 //type is inferred
+
+
+Difference
+
+var											:=
+..............................................................................................................................
+Can be used inside and outside of functions				Can only be used inside functions
+Variable declaration and value assignment can be done separately	Variable declaration and value assignment cannot be done separately (must be done in 									the same line)
+
+
+multiple variable declaration  -  
+	var x, y, z int = 20, 40, 50
+	m, n := 200, "str1"
+Variable Declaration in a Block-
+	var (
+	n1 int
+	n2 int    = 1
+	n3 string = "hello"
+	)	
+
+---------------------------------------------------------------------------------------------------------------------------------------------------
+Variable naming rules
+
+	A variable name must start with a letter or an underscore character (_)
+	A variable name cannot start with a digit
+	A variable name can only contain alpha-numeric characters and underscores (a-z, A-Z, 0-9, and _ )
+	Variable names are case-sensitive (age, Age and AGE are three different variables)
+	There is no limit on the length of the variable name
+	A variable name cannot contain spaces
+	The variable name cannot be any Go keywords
+
+Multi-Word Variable Names
+	Camel case :  myVariableName = "John"	 //Each word, except the first, starts with a capital letter
+	PAscal case:  MyVariableName = "John"    //Each word starts with a capital letter
+	snake case:   my_variable_name = "John"  //Each word starts with a capital letter
+---------------------------------------------------------------------------------------------------------------------------------------------------------
+constant
+	The const keyword declares the variable as "constant", which means that it is unchangeable and read-only.
+		const CONSTNAME type = value
+rules
+	Constant names follow the same naming rules as variables
+	Constant names are usually written in uppercase letters (for easy identification and differentiation from variables)
+	Constants can be declared both inside and outside of a function
+
+types
+	Typed constants		//const A int = 1
+	Untyped constants	//const A = 1
+----------------------------------------------------------------------------------------------------------------------------------------------------------
+
+output
+	Print()
+		The Print() function prints its arguments with their default format.
+		If we want to print the arguments in new lines, we need to use \n.
+		It is also possible to only use one Print() for printing multiple variables.
+		If we want to add a space between string arguments, we need to use " ":
+		Print() inserts a space between the arguments if neither are strings:
+	Println()
+		similar to Print() with the difference that a whitespace is added between the arguments, and a newline is added at the end
+	Printf()
+		The Printf() function first formats its argument based on the given formatting verb and then prints them.
+		Here we will use two formatting verbs:
+			%v is used to print the value of the arguments
+			%T is used to print the type of the arguments
+Formatting verb
+	%d-int	%f-float	%t-boolean	%s-string	
+	
+---------------------------------------------------------------------------------------------------------------------------------------------------------
+datatype
+	integer,float,string,boolean
+---------------------------------------------------------------------------------------------------------------------------------------------------------
+Array
+	Arrays are used to store multiple values of the same type in a single variable, instead of declaring separate variables for each value.
+
+two ways
+	var keyword:
+ 		var arr_name=[len]type{value}  //length is defined
+		var arr_name=[...]type{value}	//length is inferred
+
+	:= sign:
+		arr_name:=[len]type{value}	//length is defined
+		arr_name:=[len]type{value}	//length is inferred
+
+Acess the array
+	Println(arr)
+	Println(arr[3])
+
+change the value in array
+	arr_name[index]=value
+
+Array Initialization
+	If an array or one of its elements has not been initialized in the code, it is assigned the default value of its type.
+	The default value for int is 0, and the default value for string is "".
+
+		i := [5]int{}              //not initialized	- o/p :[0,0,0,0,0]
+		j := [5]int{9, 8}          //partially initialized	- o/p :[9,8,0,0,0]
+		k := [5]int{7, 6, 5, 4, 3} //not initialized	-o/p:[7,6,5,4,3]
+
+Initialize Only Specific Elements
+	arr1 := [5]int{1:10,2:40} //[0,10,20,0,0] 
+
+
+	fmt.Println(len(n)) //length of the array
+------------------------------------------------------------------------------------------------------------------------------------------------------------
+difference
+	Go Array allows you to define variables that can hold several data items of the same kind 
+	but it does not provide any inbuilt method to increase its size dynamically or get a sub-array of its own. 
+	Slices overcome this limitation. 
+	It provides many utility functions required on Array and is widely used in Go programming.
+-----------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Slice
+	similar to array.
+	slices are also used to store multiple values of the same type in a single variable.
+	length of the slices can grow and shrink 
+
+types:
+	Using the []datatype{values} format
+	Create a slice from an array
+	Using the make() function
+
+	1.Using the []datatype{values} format
+		slice_name := []datatype{values} 	//myslice := []int{1,2,3}
+
+	In Go, there are two functions that can be used to return the length and capacity of a slice:
+		len() function - returns the length of the slice (the number of elements in the slice) 
+		cap() function - returns the capacity of the slice (the number of elements the slice can grow or shrink to)
+		
+		fmt.Println(len(s1))
+		fmt.Println(cap(s1))
+
+	2.Create a slice from an array
+		var myarray = [length]datatype{values} // An array
+		myslice := myarray[start:end] // A slice made from the array
+
+
+		arr1 := [6]int{10, 11, 12, 13, 14, 15}
+		myslice := arr1[2:4]
+		fmt.Println(myslice) 		//[12 13]
+		fmt.Println(len(myslice))	//2
+		fmt.Println(cap(myslice))	//4
+	
+	3.Using the make() function
+		The make() function can also be used to create a slice
+			slice_name := make([]type, length, capacity)
+
+
+		myslice1 := make([]int, 5, 10) //with capacity
+		fmt.Println(myslice1)		//[0,0,0,0,0]
+		fmt.Println(len(myslice1))	//5
+		fmt.Println(cap(myslice1))	//10
+
+		myslice2 := make([]int, 5, 10) //with  omitted capacity
+		fmt.Println(myslice2)		//[0,0,0,0,0]
+		fmt.Println(len(myslice2))	//5
+		fmt.Println(cap(myslice2))	//5
+
+
+Access Elements of a Slice
+	access a specific slice element by referring to the index number.
+		fmt.Println(slice[1])	// access the slice using index
+
+Change Elements of a Slice
+	You can also change a specific slice element by referring to the index number.
+		slice[1] = 20 
+
+Append Elements To a Slice
+	slice_name = append(slice_name, element1, element2, ...)
+		 myslice1 = append(myslice1, 20, 21)
+
+Append One Slice To Another Slice
+	slice3 = append(slice1, slice2...)
+	'...' after slice2 is necessary when appending the elements of one slice to another.
+
+Memory Efficiency
+ 	When using slices, Go loads all the underlying elements into the memory.
+	If the array is large and you need only a few elements, it is better to copy those elements using the copy() function.
+	The copy() function creates a new underlying array with only the required elements for the slice. This will reduce the memory used for the program. 
+		
+		copy(dest, src)
+	The copy() function takes in two slices dest and src, and copies data from src to dest. It returns the number of elements copied.
+
+	numbers := []int{1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15}
+	// Original slice
+	fmt.Printf("numbers = %v\n", numbers)		//numbers = [1 2 3 4 5 6 7 8 9 10 11 12 13 14 15]
+	fmt.Printf("length = %d\n", len(numbers))	//length = 15
+	fmt.Printf("capacity = %d\n", cap(numbers))	//capacity = 15
+
+	// Create copy with only needed numbers
+	neededNumbers := numbers[:len(numbers)-10]
+	numbersCopy := make([]int, len(neededNumbers))
+	copy(numbersCopy, neededNumbers)
+
+	fmt.Printf("numbersCopy = %v\n", numbersCopy)	//numbersCopy = [1 2 3 4 5]
+	fmt.Printf("length = %d\n", len(numbersCopy))	//length = 5
+	fmt.Printf("capacity = %d\n", cap(numbersCopy)) //capacity = 5
+-----------------------------------------------------------------------------------------------------------------------------------------------------------
+Condition
+
+if statement
+
+	if condition {
+  		// code to be executed if condition is true
+	}
+
+if else
+	if condition {
+  		// code to be executed if condition is true
+	} else {
+ 		// code to be executed if condition is false
+	}
+	
+else if condition
+	if condition1 {
+   		// code to be executed if condition1 is true
+	} else if condition2 {
+  		 // code to be executed if condition1 is false and condition2 is true
+	} else {
+  		 // code to be executed if condition1 and condition2 are both false
+	}
+
+Switch
+	Use the switch statement to select one of many code blocks to be executed.
+	The switch statement in Go is similar to the ones in C, C++, Java, JavaScript, and PHP. 
+	The difference is that it only runs the matched case so it does not need a break statement.
+
+single switch case
+	switch expression {
+	case x:
+   		// code block
+	case y:
+   		// code block
+	case z:
+		...
+	default:
+   		// code block
+	}
+
+	The expression is evaluated once
+	The value of the switch expression is compared with the values of each case
+	If there is a match, the associated block of code is executed
+	The default keyword is optional. It specifies some code to run if there is no case match
+
+Multi-case switch Statement
+	It is possible to have multiple values for each case in the switch statement:
+
+	switch expression {
+	case x,y:
+ 		// code block if expression is evaluated to x or y
+	case v,w:
+   		// code block if expression is evaluated to v or w
+	case z:
+		...
+	default:
+   		// code block if expression is not found in any cases
+	}
+-------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Loop
+	for statement1; statement2; statement3 {
+  		 // code to be executed for each iteration
+	}
+
+	statement1 Initializes the loop counter value.
+	statement2 Evaluated for each loop iteration. If it evaluates to TRUE, the loop continues. If it evaluates to FALSE, the loop ends.
+	statement3 Increases the loop counter value
+
+	break
+	continue
+----------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Take input
